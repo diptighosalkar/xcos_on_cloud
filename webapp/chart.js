@@ -401,13 +401,14 @@ function chart_init(wnd){
 	eventSource.addEventListener("log", function(event){
 
 		var data = event.data.split(' ');
+		//console.log(data);
 		// store block info. from the data line
 		block = parseInt(data[0]);
 
 		// handle writec_f and writeau_f
 		if(block==21||block==22){
 
-			console.log(data[5]);
+			//console.log(data[5]);
                         //create a form and add the filename to it
 			var form = new FormData()
 			form.append('path',data[5]);
