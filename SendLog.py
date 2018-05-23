@@ -362,12 +362,12 @@ def event_stream(xcos_file_id):
 		    # Get the line and loop until the state is ENDING and figure_list empty
 		    # Determine if we get block id and give it to chart.js
 		    if line.get_state()== BLOCK_IDENTIFICATION:
-			#print("event: block\ndata: "+line.get_line()+"\n\n"+".....>>>>>>>>>>>>>>>>>> 3")
+			print("event: block\ndata: "+line.get_line()+"\n\n"+".....>>>>>>>>>>>>>>>>>> 3")
 		        yield "event: block\ndata: "+line.get_line()+"\n\n"
 		    elif line.get_state() != DATA:
 		        gevent.sleep(LOOK_DELAY)      
 		    else:
-			#print("event: log\ndata: "+line.get_line()+"\n\n"+"......>>>>>>>>>>>>>>>> 4")
+			print("event: log\ndata: "+line.get_line()+"\n\n"+"......>>>>>>>>>>>>>>>> 4")
 		        yield "event: log\ndata: "+line.get_line()+"\n\n"
 		    # Reset line, so server won't send same line twice
 		    line = line_and_state(None, NOLINE)
