@@ -1805,11 +1805,11 @@
          	    
                             wnd = new mxWindow('Simulation', content, (w-600)/2, (h-400)/2, 600, 400, true, true);
                             wnd.setMaximizable(true);              
-              wnd.setMinimizable(true);
-              wnd.setScrollable(true);
-              wnd.setResizable(true);
-              wnd.setClosable(true);
-              wnd.setVisible(true);
+              		    wnd.setMinimizable(true);
+                            wnd.setScrollable(true);
+                            wnd.setResizable(true);
+                            wnd.setClosable(true);
+                            wnd.setVisible(true);
                             wnd.addListener(mxEvent.CLOSE, function(e){
                                 chart_reset();
          		StopTK();  // call this function 
@@ -2206,14 +2206,23 @@
                                 if(this.responseText!='error'){
                                     // If no error in uploading, initialize chart
                                     clientID = this.responseText;
+				    if(!clientID.includes("-AffichUsed")){
          
-         		     if((row<=10 && row >= 1)&&(Ablock_tag.length==0))
-         		     {
-         			myAjaxreq("Start", "/UpdateTKfile");
-         			CreateSlider();  // if tkblocks are <=10 then create slider else not    
-         		     }
+		 		     if((row<=10 && row >= 1)&&(Ablock_tag.length==0))
+		 		     {
+		 			myAjaxreq("Start", "/UpdateTKfile");
+		 			CreateSlider();  // if tkblocks are <=10 then create slider else not    
+		 		     }
          		    
-                                    chart_init(wnd);
+                                     chart_init(wnd);
+				    }else{
+
+					//wnd.destroy();
+					alert("affich block used in index.html");
+					clientID = clientID.substr(0, clientID.indexOf('-'));
+					chart_init(wnd);
+					
+				     }
                                 }else{
                                     alert("Error");
                                 }
