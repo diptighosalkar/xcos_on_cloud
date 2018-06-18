@@ -2147,3 +2147,22 @@ function coeff(polynomial, degree) {
 
 	return x[x.length - 1].length == 1 ? 1 : x[x.length - 1].split('*')[0];
 }
+
+function cont_frm(num,den){
+   var return_first;
+   var form = new FormData()
+   form.append('num',num);
+   form.append('den',den);
+   var xhr = new XMLHttpRequest();
+   var test;
+   xhr.open("POST", "/getOutput", false);
+   xhr.onload = function() {
+	if(this.status==200){
+           		
+	   }
+	};
+   xhr.send(form);
+   return_first = JSON.parse(xhr.responseText.trim());
+   return return_first;
+}
+
