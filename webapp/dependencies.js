@@ -2147,3 +2147,4 @@ function coeff(polynomial, degree) {
 
 	return x[x.length - 1].length == 1 ? 1 : x[x.length - 1].split('*')[0];
 }
+
