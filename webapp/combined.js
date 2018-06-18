@@ -3827,13 +3827,11 @@ function CONST_m() {
 			this.x.model.opar = list(new ScilabDouble([this.c][0]));
 
 			if(arguments[0]["vec"].match(/\[[0-9]+\]/)){
-			
 				this.displayParameter = ["["+this.c+"]"];//[sci2exp(this.c)];
 				exprs = new ScilabString(["["+this.c+"]"]);
 				this.c=["["+this.c+"]"];
 
 			}else{
-			
 				this.displayParameter = [sci2exp(this.c)];
 				exprs = new ScilabString([sci2exp(this.c)]);
 			
