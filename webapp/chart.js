@@ -336,7 +336,7 @@ var create_draggable_points_chart = function(graphPoints, pointsHistory, xmin, x
 
 
 
-function chart_init(wnd){
+function chart_init(wnd,blockname){
 
 	var block;
 	// define buffer for CANIMXY3D

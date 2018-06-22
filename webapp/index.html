@@ -2246,13 +2246,13 @@
 		 			CreateSlider();  // if tkblocks are <=10 then create slider else not    
 		 		     }
          		    
-                                     chart_init(wnd);
+                                     chart_init(wnd,blockname);
 				    }else{
 
 					//wnd.destroy();
 					alert("affich block used in index.html");
 					clientID = clientID.substr(0, clientID.indexOf('-'));
-					chart_init(wnd);
+					chart_init(wnd,blockname);
 					
 				     }
                                 }else{
