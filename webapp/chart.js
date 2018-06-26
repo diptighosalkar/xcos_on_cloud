@@ -343,11 +343,14 @@ function chart_init(wnd,blockname){
 	var buffer;
         // buffer for CANIMXY
         var buffer_canimxy;
-	// Initialise variable for entry condition of creating chart for BARXY and AFFICH_m
-	var block_entry_BARXY = 1, block_entry_AFFICH = 1;
+	// Initialise variable for entry condition of creating chart for BARXY 
+	var block_entry_BARXY = 1;
 
 	// Start listening to server
 	chart_reset();
+	
+  if(blockname=="GeneralBlock"){
+
 	eventSource = new EventSource("/SendLog?id="+clientID);
         
 	eventSource.addEventListener("block", function(event){
@@ -741,6 +744,12 @@ function chart_init(wnd,blockname){
 		}
 	},5);
 
+
+   }else{
+
+	alert("affich_m is called...");
+
+   }
 
 }
 

@@ -2230,7 +2230,7 @@
                             // Send xcos file to server
                             var form = new FormData()  
                             form.append("file",blob);
-         	    
+         	            var blockname=""; //this is used to save block name : expect AFFICH_m all other block will be GeneralBlock
                             var xhr = new XMLHttpRequest();
                             xhr.open("POST", "/upload", true);
                             xhr.onload = function() {
@@ -2240,19 +2240,20 @@
                                     clientID = this.responseText;
 				    if(!clientID.includes("-AffichUsed")){
          
-		 		     if((row<=10 && row >= 1)&&(Ablock_tag.length==0))
-		 		     {
-		 			myAjaxreq("Start", "/UpdateTKfile");
-		 			CreateSlider();  // if tkblocks are <=10 then create slider else not    
-		 		     }
-         		    
-                                     chart_init(wnd,blockname);
+			 		     if((row<=10 && row >= 1)&&(Ablock_tag.length==0))
+			 		     {
+			 			myAjaxreq("Start", "/UpdateTKfile");
+			 			CreateSlider();  // if tkblocks are <=10 then create slider else not    
+			 		     }
+		 		    	     blockname="GeneralBlock";
+		                             chart_init(wnd,blockname);
 				    }else{
 
-					//wnd.destroy();
-					alert("affich block used in index.html");
-					clientID = clientID.substr(0, clientID.indexOf('-'));
-					chart_init(wnd,blockname);
+					   //wnd.destroy();
+					   //alert("affich block used in index.html");
+					     blockname="AFFICH_m"
+					     clientID = clientID.substr(0, clientID.indexOf('-'));
+					     chart_init(wnd,blockname);
 					
 				     }
                                 }else{

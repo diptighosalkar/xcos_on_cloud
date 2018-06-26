@@ -348,8 +348,7 @@ def event_stream(xcos_file_id):
         yield "event: DONE\ndata: None\n\n"
 
     else:
-
-	if workspace_counter!=4:
+	if(workspace_counter==4):
 	        # Open the log file
 		if not (os.path.isfile(log_name)):
 		    return
@@ -378,17 +377,7 @@ def event_stream(xcos_file_id):
 		# Notify Client
 		yield "event: DONE\ndata: None\n\n"
 	else:
-		print("affich is used")
-		log_file = open(log_dir + log_name, "r")
-		print(os.path.isfile(log_name))
-		print(log_file.readline())
-		data = log_file.read() # Read the data into a variableprint (data)
-		print(data)
-  		file_rows = data.strip('\n').split('\n\n') # Split the file rows into seperate elements of a list
-		print(file_rows)
-    		for abc in file_rows:
-        		print(abc.split('\n'))
-		yield "event: log\ndata: "+"78 AFFICH_M"+"\n\n"
+		print("affich_m found")
         
 # class used to get the user_id and the boolean value is to make run a thread    
 class Details:
