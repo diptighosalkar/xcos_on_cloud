@@ -1,11 +1,11 @@
 var finalIntegrationTime = 1.0E05;
+var realTimeScaling = 0.0E00;
 var integratorAbsoluteTolerance = 1.0E-06;
 var integratorRelativeTolerance = 1.0E-06;
-var maximumStepSize = 0.0E00;
-var realTimeScaling = 0.0E00;
 var toleranceOnTime = 1.0E-10;
 var maxIntegrationTimeInterval = 1.00001E05;
 var solver = 0.0;
+var maximumStepSize = 0.0E00;
 var defaultProperties = null;
 
 var expressionArray = [""];
@@ -27,14 +27,14 @@ function setup() {
 
     if (arguments[0] == "get") {
         defaultProperties = {
-            i_time: ["Final Integration Time", "finalIntegrationTime", finalIntegrationTime],
-            ab_tolerance: ["Integrator Absolute Tolerance", "integratorAbsoluteTolerance", integratorAbsoluteTolerance],
-            rl_tolerance: ["Integrator Relative Tolerance", "integratorRelativeTolerance", integratorRelativeTolerance],
-            max_step_sze: ["Maximum step size(0 means no limit)", "maximumStepSize", maximumStepSize],
-            rt_scale: ["Real Time Scaling", "realTimeScaling", realTimeScaling],
-            tm_tolerance: ["Tolerance on Time", "toleranceOnTime", toleranceOnTime],
-            max_integ_time_interval: ["Maximum Integration Time Interval", "maxIntegrationTimeInterval", maxIntegrationTimeInterval],
-            solv_kind: ["Solver Kind", "solver", solver]
+            i_time: ["Final integration time", "finalIntegrationTime", finalIntegrationTime],
+            rt_scale: ["Real time scaling", "realTimeScaling", realTimeScaling],
+            ab_tolerance: ["Integrator absolute tolerance", "integratorAbsoluteTolerance", integratorAbsoluteTolerance],
+            rl_tolerance: ["Integrator relative tolerance", "integratorRelativeTolerance", integratorRelativeTolerance],
+            tm_tolerance: ["Tolerance on time", "toleranceOnTime", toleranceOnTime],
+            max_integ_time_interval: ["Max integration time interval", "maxIntegrationTimeInterval", maxIntegrationTimeInterval],
+            solv_kind: ["Solver kind", "solver", solver],
+            max_step_sze: ["Maximum step size(0 means no limit)", "maximumStepSize", maximumStepSize]
         };
         return defaultProperties;
     } else if (arguments[0] == "set") {

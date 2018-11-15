@@ -7,6 +7,7 @@ function CEVENTSCOPE() {
         this.wdim = [[600],[400]];
         this.wpos = [[-1],[-1]];
         this.per = 30;
+        this.clrs = this.clrs.slice(0, this.nclock);
 
 
         var model = scicos_model();

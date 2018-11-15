@@ -59,11 +59,12 @@ var create_new_chart = function(id, no_of_graph,ymin,ymax,xmin,xmax,type_chart,t
 	}
     else if(title_text.substring(0,7)=="CANIMXY"){
         //disable line by putting thickness as 0
-        console.log("check");
+        //console.log("check");
         thickness= 0
 
     }
     else if(title_text.substring(0,7)=="CEVSCPE"){ //To manipulate the graph width of ceventscope
+    console.log("::::::inside chart for graph width ::::: ");
 		pointWidthvalue=2;
 		pointplacementvalue=0;
 		pointRangevalue = 0.05;
@@ -115,12 +116,12 @@ var create_new_chart = function(id, no_of_graph,ymin,ymax,xmin,xmax,type_chart,t
 				enabled: false
 			},
 			column: {
-            			pointPlacement: pointplacementvalue,
+            	pointPlacement: pointplacementvalue,
 				pointRange: pointRangevalue	
         		},
 			series: {
             	lineWidth: thickness,
-		pointWidth: pointWidthvalue,
+		        pointWidth: pointWidthvalue,
             	states: {
                     hover: {
                         lineWidth: thickness
@@ -146,6 +147,7 @@ var create_new_chart = function(id, no_of_graph,ymin,ymax,xmin,xmax,type_chart,t
 	});
 
 	if(title_text.substring(0,5)!="BARXY"){
+	console.log("::::: inside list insertion:::::::");
 		chart_id_list.push(id);
 		points_list.push(new Queue());
 		series_list.push([]);
@@ -487,6 +489,7 @@ function chart_init(wnd,affichwnd){
 
 			        //Event Handling block is ceventscope
 				if(block ==23){
+				console.log("::::::Ceventscope inside chart_init::::"+data.toSource());
 				chart_type = 'column';
 				create_new_chart(figure_id,data[12],0,1,0,data[13],chart_type,data[14]+'-'+data[3]);
 				RANGE[chart_id_list.indexOf(figure_id)]=parseFloat(data[13]);
@@ -622,7 +625,6 @@ function chart_init(wnd,affichwnd){
 
 		eventSource.close(); 	// Close connection
 		console.log("Done");
-                chart_reset();
                 $('#img_loader').html("");
 		isDone = true;
 	}, false);
@@ -698,6 +700,9 @@ function chart_init(wnd,affichwnd){
 
 
 				if(block < 4||block==23){
+				    if(block==23){
+				    console.log("inside set interval ::::value of X ::"+x+"::: Range[index]:::"+index+"::::value::"+RANGE[index] );
+				    }
 					// Shift chart axis to display new values(only for blocks requiring shift, i.e, blocks 1-3)
 					if(x>(RANGE[index])) 
 				 	  chart.xAxis[0].setExtremes(Math.floor(x-(RANGE[index]-1.0)),Math.floor(x+1.0));
