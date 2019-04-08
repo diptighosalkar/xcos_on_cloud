@@ -41,9 +41,9 @@
             <block name="NRMSOM_f">
                 <icon variable="SCI" path="palettes/NRMSOM_f.png"/>
             </block>
-            <block name="OUT_f">
+            <!--<block name="OUT_f">
                 <icon variable="SCI" path="palettes/OUT_f.png"/>
-            </block>
+            </block>-->
             <block name="PRODUCT">
                 <icon variable="SCI" path="palettes/PRODUCT.png"/>
             </block>
@@ -174,9 +174,9 @@
             <block name="SampleCLK">
                 <icon variable="SCI" path="palettes/SampleCLK.png"/>
             </block>
-            <block name="VirtualCLK0">
+            <!--<block name="VirtualCLK0">
                 <icon variable="SCI" path="palettes/VirtualCLK0.png"/>
-            </block>
+            </block>-->
             <block name="ANDBLK">
                 <icon variable="SCI" path="palettes/ANDBLK.png"/>
             </block>
@@ -272,9 +272,9 @@
             <block name="LOGBLK_f">
                 <icon variable="SCI" path="palettes/LOGBLK_f.png"/>
             </block>
-            <block name="MATMAGPHI">
+            <!--<block name="MATMAGPHI">
                 <icon variable="SCI" path="palettes/MATMAGPHI.png"/>
-            </block>
+            </block>-->
             <block name="MATZREIM">
                 <icon variable="SCI" path="palettes/MATZREIM.png"/>
             </block>
@@ -367,9 +367,9 @@
             <block name="MATMUL">
                 <icon variable="SCI" path="palettes/MATMUL.png"/>
             </block>
-            <block name="MATPINV">
+            <!--<block name="MATPINV">
                 <icon variable="SCI" path="palettes/MATPINV.png"/>
-            </block>
+            </block>-->
             <block name="MATRESH">
                 <icon variable="SCI" path="palettes/MATRESH.png"/>
             </block>
@@ -379,21 +379,21 @@
             <block name="MATSUM">
                 <icon variable="SCI" path="palettes/MATSUM.png"/>
             </block>
-            <block name="MATTRAN">
+            <!--<block name="MATTRAN">
                 <icon variable="SCI" path="palettes/MATTRAN.png"/>
-            </block>
-            <block name="MATZCONJ">
+            </block>-->
+            <!--<block name="MATZCONJ">
                 <icon variable="SCI" path="palettes/MATZCONJ.png"/>
-            </block>
-            <block name="MATZREIM">
+            </block>-->
+            <!--<block name="MATZREIM">
                 <icon variable="SCI" path="palettes/MATZREIM.png"/>
-            </block>
+            </block>-->
             <block name="RICC">
                 <icon variable="SCI" path="palettes/RICC.png"/>
             </block>
-            <block name="ROOTCOEF">
+            <!--<block name="ROOTCOEF">
                 <icon variable="SCI" path="palettes/ROOTCOEF.png"/>
-            </block>
+            </block>-->
             <block name="SQRT">
                 <icon variable="SCI" path="palettes/SQRT.png"/>
             </block>
@@ -508,21 +508,21 @@
             </block>
         </node>
         <node xsi:type="PreLoaded" enable="true" name="Port &amp; Subsystem">
-            <block name="CLKINV_f">
+            <!--<block name="CLKINV_f">
                 <icon variable="SCI" path="palettes/CLKINV_f.png"/>
-            </block>
-            <block name="CLKOUTV_f">
+            </block>-->
+            <!--<block name="CLKOUTV_f">
                 <icon variable="SCI" path="palettes/CLKOUTV_f.png"/>
-            </block>
+            </block>-->
             <block name="IN_f">
                 <icon variable="SCI" path="palettes/IN_f.png"/>
             </block>
-            <block name="INIMPL_f">
+            <!--<block name="INIMPL_f">
                 <icon variable="SCI" path="palettes/INIMPL_f.png"/>
-            </block>
-            <block name="OUTIMPL_f">
+            </block>-->
+            <!--<block name="OUTIMPL_f">
                 <icon variable="SCI" path="palettes/OUTIMPL_f.png"/>
-            </block>
+            </block>-->
             <block name="OUT_f">
                 <icon variable="SCI" path="palettes/OUT_f.png"/>
             </block>
@@ -552,24 +552,24 @@
             <block name="DEMUX_f">
                 <icon variable="SCI" path="palettes/DEMUX_f.png"/>
             </block>
-            <block name="EXTRACTOR">
+            <!--<block name="EXTRACTOR">
                 <icon variable="SCI" path="palettes/EXTRACTOR.png"/>
-            </block>
-            <block name="SCALAR2VECTOR">
+            </block>-->
+            <!--<block name="SCALAR2VECTOR">
                 <icon variable="SCI" path="palettes/SCALAR2VECTOR.png"/>
-            </block>
+            </block>-->
             <block name="FROM">
                 <icon variable="SCI" path="palettes/FROM.png"/>
             </block>
-            <block name="FROMMO">
+            <!--<block name="FROMMO">
                 <icon variable="SCI" path="palettes/FROMMO.png"/>
-            </block>
+            </block>-->
             <block name="GOTO">
                 <icon variable="SCI" path="palettes/GOTO.png"/>
             </block>
-            <block name="GOTOMO">
+            <!--<block name="GOTOMO">
                 <icon variable="SCI" path="palettes/GOTOMO.png"/>
-            </block>
+            </block>-->
             <block name="CLKFROM">
                 <icon variable="SCI" path="palettes/CLKFROM.png"/>
             </block>
@@ -609,9 +609,9 @@
             <block name="SWITCH_f">
                 <icon variable="SCI" path="palettes/SWITCH_f.png"/>
             </block>
-            <block name="SELF_SWITCH">
+            <!--<block name="SELF_SWITCH">
                 <icon variable="SCI" path="palettes/SELF_SWITCH.png"/>
-            </block>
+            </block> -->
         </node>
         <node xsi:type="PreLoaded" enable="true" name="Signal Processing">
             <block name="QUANT_f">
@@ -647,21 +647,21 @@
             <block name="CANIMXY">
                 <icon variable="SCI" path="palettes/CANIMXY.png"/>
             </block>
-            <block name="CANIMXY3D">
+            <!--<block name="CANIMXY3D">
                 <icon variable="SCI" path="palettes/CANIMXY3D.png"/>
-            </block>
+            </block>-->
             <block name="CFSCOPE">
                 <icon variable="SCI" path="palettes/CFSCOPE.png"/>
             </block>
             <block name="CLKOUTV_f">
                 <icon variable="SCI" path="palettes/CLKOUTV_f.png"/>
             </block>
-            <block name="CMAT3D">
+            <!--<block name="CMAT3D">
                 <icon variable="SCI" path="palettes/CMAT3D.png"/>
-            </block>
-            <block name="CMATVIEW">
+            </block>-->
+            <!--<block name="CMATVIEW">
                 <icon variable="SCI" path="palettes/CMATVIEW.png"/>
-            </block>
+            </block>-->
             <block name="CMSCOPE">
                 <icon variable="SCI" path="palettes/CMSCOPE.png"/>
             </block>
@@ -736,9 +736,9 @@
             <block name="INIMPL_f">
                 <icon variable="SCI" path="palettes/INIMPL_f.png"/>
             </block>
-            <block name="IN_f">
+            <!--<block name="IN_f">
                 <icon variable="SCI" path="palettes/IN_f.png"/>
-            </block>
+            </block>-->
             <block name="Modulo_Count">
                 <icon variable="SCI" path="palettes/Modulo_Count.png"/>
             </block>
@@ -769,12 +769,12 @@
             <block name="SampleCLK">
                 <icon variable="SCI" path="palettes/SampleCLK.png"/>
             </block>
-            <block name="Sigbuilder">
+            <!--<block name="Sigbuilder">
                 <icon variable="SCI" path="palettes/Sigbuilder.png"/>
-            </block>
-            <block name="TIME_f">
+            </block>-->
+            <!--<block name="TIME_f">
                 <icon variable="SCI" path="palettes/TIME_f.png"/>
-            </block>
+            </block>-->
             <block name="TKSCALE">
                 <icon variable="SCI" path="palettes/TKSCALE.png"/>
             </block>
@@ -811,33 +811,33 @@
             </block>
         </node>
         <node xsi:type="PreLoaded" enable="true" name="User-Defined Functions">
-            <block name="CBLOCK">
+            <!--<block name="CBLOCK">
                 <icon variable="SCI" path="palettes/CBLOCK.png"/>
-            </block>
-            <block name="CBLOCK4">
+            </block>-->
+            <!--<block name="CBLOCK4">
                 <icon variable="SCI" path="palettes/CBLOCK4.png"/>
-            </block>
+            </block> -->
             <block name="DEBUG">
                 <icon variable="SCI" path="palettes/DEBUG.png"/>
             </block>
             <block name="EXPRESSION">
                 <icon variable="SCI" path="palettes/EXPRESSION.png"/>
             </block>
-            <block name="MBLOCK">
+            <!--<block name="MBLOCK">
                 <icon variable="SCI" path="palettes/MBLOCK.png"/>
-            </block>
-            <block name="PDE">
+            </block>-->
+            <!--<block name="PDE">
                 <icon variable="SCI" path="palettes/PDE.png"/>
-            </block>
-            <block name="SUPER_f">
+            </block>-->
+            <!--<block name="SUPER_f">
                 <icon variable="SCI" path="palettes/SUPER_f.png"/>
-            </block>
-            <block name="c_block">
+            </block>-->
+           <!--<block name="c_block">
                 <icon variable="SCI" path="palettes/c_block.png"/>
-            </block>
-            <block name="fortran_block">
+            </block>-->
+            <!--<block name="fortran_block">
                 <icon variable="SCI" path="palettes/fortran_block.png"/>
-            </block>
+            </block>-->
             <block name="generic_block3">
                 <icon variable="SCI" path="palettes/generic_block3.png"/>
             </block>
