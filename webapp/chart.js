@@ -189,6 +189,23 @@ function get_points_for_data(data, m, n){
     return array_data;
 }
 
+//Gets data (array with x , y and coloraxis values) to be passed to chart points
+function get_points_for_data_cmat3d(data, m, n){
+    var array_data = [];
+    var i = 28;
+    for (var x = (m-2) ; x >= 0; x--){
+        for (var y = 0 ; y < (n-1) ; y++){
+            var data_values = [];
+            data_values[0] = x;
+            data_values[1] = y;
+            data_values[2] = parseInt(data[i]);
+            array_data.push(data_values);
+            i++;
+        }
+    }
+    return array_data;
+}
+
 //Chart function for cmatview which has less than 10*10 matrix size
 var create_chart_for_cmatview = function(id, m, n, title_text, color_axis) {
     xmin = 0;
@@ -297,6 +314,117 @@ var create_chart_for_large_data_cmatview = function(id, m, n, title_text, color_
     series_list.push([]);
 };
 
+//Chart function for cmatview which has less than 10*10 matrix size
+var create_chart_for_cmat_3d = function(id, xmin, xmax, ymin, ymax, zmin, zmax, alpha, theta, title_text, color_axis) {
+    // convert String values to desired datatype
+    xmin = parseFloat(xmin);
+    xmax = parseFloat(xmax);
+    ymin = parseFloat(ymin);
+    ymax = parseFloat(ymax);
+    zmin = parseFloat(zmin);
+    zmax = parseFloat(zmax);
+    // Assigning angle theta of 3D block to beta angle of highchart ( Can be
+    // modified later)
+    beta = theta;
+    $('#charts').append("<div id='chart-"+id+"' style = 'height:100%;width:100%'></div>");
+    $('#chart-'+id.toString()).highcharts({
+        chart: {
+            type: 'scatter',
+            zoomtype: 'xy',
+            options3d: {
+                enabled: true,
+                alpha: alpha,
+                beta: beta,
+                depth: 100,
+                viewDistance: 100,
+                frame: {
+                    bottom: {
+                        size: 0,
+                        color: '#FFFFFF'
+                    },
+                    back: {
+                        size: 0,
+                        color: '#FFFFFF'
+                    },
+                    side: {
+                        size: 0,
+                        color: '#FFFFFF'
+                    }
+                }
+            }
+        },
+        title: {
+            text: title_text
+        },
+        tooltip: {
+            enabled: false
+        },
+        yAxis: {
+            // Manipulation for showing z axis vertically instead of Y axis
+            // (only for 3D graph).
+            min: zmin,
+            max: zmax,
+            gridLineWidth: 1,
+            tickInterval: 1,
+            title: {
+                rotation: 0,
+                style: {
+                    fontWeight: 'bold',
+                    fontSize: '15px'
+                },
+                text: 'z'
+            }
+        },
+        xAxis: {
+            min: xmin,
+            max: xmax,
+            tickInterval: 1,
+            gridLineWidth: 1,
+            title: {
+                style: {
+                    fontWeight: 'bold',
+                    fontSize: '15px'
+                },
+                text: 'x' // title for X for differentiating axis
+            }
+        },
+        zAxis: {
+            // Manipulation for showing y axis values in place of z axis (only
+            // for 3D graph).
+            min: ymin,
+            max: ymax,
+            tickInterval: 1,
+            gridLineWidth: 1,
+            title: {
+                rotation: 300,
+                margin: -30,
+                style: {
+                    fontWeight: 'bold',
+                    fontSize: '15px'
+                },
+                text: 'y'
+            }
+        },
+        plotOptions: {
+            marker: {
+                enabled: false
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        //colorAxis: {
+       //     dataClasses: color_axis
+       // },
+        series: []
+    });
+
+    chart_id_list.push(id);
+    points_list.push(new Queue());
+    series_list.push([]);
+
+
+};
 
 // Function to create a new 3d-chart
 var create_new_chart_3d = function(id, no_of_graph, xmin, xmax, ymin, ymax, zmin, zmax, type_chart, title_text, alpha, theta) {
@@ -829,6 +957,7 @@ function chart_init(graph, wnd, affichwnd, with_interval, with_interval2, show_i
         } else if(block == 13){
             // process data for CMAT3D blocks
             var block_uid = data[2];
+            var line_id = parseInt(data[6]);
             var m = data[8];
             var n = data[10];
             var xmin = data[12];
@@ -839,7 +968,18 @@ function chart_init(graph, wnd, affichwnd, with_interval, with_interval2, show_i
             var zmax = data[22];
             var alpha = data[24];
             var theta = data[26];
+            var title_text = "CMAT3D-" + block_uid;
+            var color_axis = get_color_axis_for_points(block_uid);
             //Chart function need to be written
+            if (chart_id_list.indexOf(block_uid) < 0) {
+                create_chart_for_cmat_3d(block_uid, xmin, xmax, ymin, ymax, zmin, zmax, alpha, theta, title_text, color_axis);
+            }
+            var index = chart_id_list.indexOf(block_uid);
+            // store 3d-data
+            var values = get_points_for_data_cmat3d(data, data[8], data[10]);
+            points_list[index].enqueue([line_id, values]);
+            // store block number for chart creation
+            block_list[index] = block;
 
         } else if (block == 20) {
             // Process data for Affich_m block
@@ -968,7 +1108,7 @@ function chart_init(graph, wnd, affichwnd, with_interval, with_interval2, show_i
                 var pointAdded = false;
                 var pointsAdded = 0;
 
-                if (block != 10 && block !=9 && block != 12) {
+                if (block != 10 && block !=9 && block != 12 && block != 13) {
                     // Get chart container
                     var chart = $('#chart-'+figure_id).highcharts();
                     // Add points
@@ -1090,7 +1230,7 @@ function chart_init(graph, wnd, affichwnd, with_interval, with_interval2, show_i
 
                         chart.redraw();
                     }
-                }else if (block == 12){
+                }else if (block == 12 && block == 13){
                     //Process for CMATVIEW
 
                     // Get chart container
