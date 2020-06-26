@@ -1,7 +1,4 @@
 function SUPER_f() {
-    SUPER_f.prototype.get = function SUPER_f() {
-        alert("parameters can not be changed ")
-    }
 
     SUPER_f.prototype.define = function SUPER_f() {
         var scs = scicos_diagram();

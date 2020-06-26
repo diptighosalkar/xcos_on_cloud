@@ -65,6 +65,7 @@ function getXsltProcessor() {
 
 var wnd = null;
 var affichwnd = null;
+var super_f_wnd = null; // window for xcos file of super_f block parameter window
 
 var scriptSimulationStarted = false;
 var uploadScriptButton = null;
@@ -157,7 +158,7 @@ function GetcurVal() {
     myAjaxreq(valueArr, "/UpdateTKfile?id="+clientID); // send the request
 }
 
-function main(container, outline, toolbar, sidebar, status) {
+function main(container, outline, toolbar, sidebar, status, super_f_flag) {
     // the following lines makes the GetcurVal() call if <p id is changed (when
     // tk value updates)
     var target = document.querySelector("p.tkchange");
@@ -1217,23 +1218,24 @@ function main(container, outline, toolbar, sidebar, status) {
             graph.getModel().endUpdate();
         }
     });
+    //Condition for showing following button for normal toolbar load, and hide in case of super_f window toolbar
+    if( super_f_flag == false ){
+        addToolbarButton(editor, toolbar, 'toggle', 'Expand All', 'images/navigate_plus.png');
+        toolbar.appendChild(spacer.cloneNode(true));
 
-    addToolbarButton(editor, toolbar, 'toggle', 'Expand All', 'images/navigate_plus.png');
-    toolbar.appendChild(spacer.cloneNode(true));
+        addToolbarButton(editor, toolbar, 'cut', 'Cut', 'images/cut.png', false, true);
+        addToolbarButton(editor, toolbar, 'copy', 'Copy', 'images/copy.png', false, true);
+        addToolbarButton(editor, toolbar, 'paste', 'Paste', 'images/paste.png', false, true);
+        toolbar.appendChild(spacer.cloneNode(true));
 
-    addToolbarButton(editor, toolbar, 'cut', 'Cut', 'images/cut.png', false, true);
-    addToolbarButton(editor, toolbar, 'copy', 'Copy', 'images/copy.png', false, true);
-    addToolbarButton(editor, toolbar, 'paste', 'Paste', 'images/paste.png', false, true);
-    toolbar.appendChild(spacer.cloneNode(true));
+        addToolbarButton(editor, toolbar, 'deleteBlock', 'Delete', 'images/delete2.png', false, true);
+        addToolbarButton(editor, toolbar, 'undo', 'Undo', 'images/undo.png', false, true);
+        addToolbarButton(editor, toolbar, 'redo', 'Redo', 'images/redo.png', false, true);
+        toolbar.appendChild(spacer.cloneNode(true));
 
-    addToolbarButton(editor, toolbar, 'deleteBlock', 'Delete', 'images/delete2.png', false, true);
-    addToolbarButton(editor, toolbar, 'undo', 'Undo', 'images/undo.png', false, true);
-    addToolbarButton(editor, toolbar, 'redo', 'Redo', 'images/redo.png', false, true);
-    toolbar.appendChild(spacer.cloneNode(true));
-
-    addToolbarButton(editor, toolbar, 'print', 'Print Xcos', 'images/printer.png', false, true);
-    toolbar.appendChild(spacer.cloneNode(true));
-
+        addToolbarButton(editor, toolbar, 'print', 'Print Xcos', 'images/printer.png', false, true);
+        toolbar.appendChild(spacer.cloneNode(true));
+    }
     /*
      * Maverick
      * The Export buttons in toolbar call this function with different
@@ -2419,11 +2421,13 @@ function main(container, outline, toolbar, sidebar, status) {
 
     // Adds toolbar buttons into the status bar at the bottom
     // of the window.
-
-    addToolbarButton(editor, status, 'zoomIn', 'Zoom In', 'images/zoom_in.png', true, true);
-    addToolbarButton(editor, status, 'zoomOut', 'Zoom Out', 'images/zoom_out.png', true, true);
-    addToolbarButton(editor, status, 'actualSize', '100%', 'images/view_1_1.png', true, true);
-    addToolbarButton(editor, status, 'fit', 'Zoom To Fit', 'images/fit_to_size.png', true, true);
+    //Condition for showing following button for bottom toolbar, and hide in case of super_f window bottom toolbar
+    if(super_f_flag == false){
+        addToolbarButton(editor, status, 'zoomIn', 'Zoom In', 'images/zoom_in.png', true, true);
+        addToolbarButton(editor, status, 'zoomOut', 'Zoom Out', 'images/zoom_out.png', true, true);
+        addToolbarButton(editor, status, 'actualSize', '100%', 'images/view_1_1.png', true, true);
+        addToolbarButton(editor, status, 'fit', 'Zoom To Fit', 'images/fit_to_size.png', true, true);
+    }
 
     // Creates the outline (navigator, overview) for moving
     // around the graph in the top, right corner of the window.
@@ -2849,7 +2853,7 @@ function getPorts(details_instance) {
 
 function showPropertiesWindow(graph, cell, diagRoot) {
     var name = cell.getAttribute('blockElementName');
-    if (name!="LOOKUP_f" && name!="CURV_f" && name != "SELF_SWITCH") {
+    if (name!="LOOKUP_f" && name!="CURV_f" && name != "SELF_SWITCH" && name != "SUPER_f") {
         var defaultProperties = cell.blockInstance.instance.get();
         /*
          * {
@@ -3105,6 +3109,9 @@ function showPropertiesWindow(graph, cell, diagRoot) {
         // This function is specifically for self_switch
         if (name == "SELF_SWITCH"){
             update_self_switch_values(graph, cell);
+        } else if(name == "SUPER_f"){
+            /* Function for opening Super_f*/
+            super_f_get_window();
         } else {
             /* Function is present inside LOOKUP_CURV.js */
             showGraphWindow(graph,cell,diagRoot);
